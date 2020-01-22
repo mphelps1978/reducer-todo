@@ -5,17 +5,22 @@ import TodoItem from './TodoItem';
 
 import {initialState, todoReducer} from '../reducers/todoReducer';
 
+import './buttonStyle.css'
+
 
 const TodoList = (props) =>  {
   console.log('Props: ', props)
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
   return (
-    <div onClick={() => dispatch({type: 'TOGGLE_COMPLETED'})} >
+    <div>
       {props.state.map(item => (
-        <TodoItem key={item.id} item={item} dispatch={props.dispatch} />
+        <div onClick={() => dispatch({type: 'TOGGLE_COMPLETED'})} >
+          <TodoItem key={item.id} item={item} dispatch={props.dispatch} />
+        </div>
       ))}
-    </div>
+      </div>
+
   );
 }
 export default TodoList
