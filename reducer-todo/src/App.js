@@ -1,19 +1,29 @@
 import React, {useState, useReducer} from 'react';
-import TodoList from './components/TodoList';
 
 import {initialState, todoReducer} from './reducers/todoReducer';
+
+import NewTodo from './components/NewTodo';
+import TodoList from './components/TodoList';
+import TodoClearbtn from './components/TodoClearbtn';
+
 function App() {
 const [state, dispatch] = useReducer(todoReducer, initialState);
   return (
-    <div className="App">
+    <div style={{
+      background: '#282c34',
+      paddingBottom:'50px'
+
+    }}>
 
       <header className="App-header">
-        <p>
+        <h1 style={{color:'white', textAlign:'center'}}>
           Welcome to My ToDo List
-        </p>
+        </h1>
       </header>
       <div>
+      <NewTodo state={state} dispatch={dispatch} />
       <TodoList state={state} dispatch={dispatch} />
+      <TodoClearbtn dispatch={dispatch} />
       </div>
 
     </div>
